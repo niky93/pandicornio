@@ -18,14 +18,23 @@ public class PackageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_package);
         paquetes= (Paquetes) getIntent().getExtras().getSerializable("Package");
 
+
         code=  (TextView) findViewById(R.id.txtCod);
         fl=    (TextView) findViewById(R.id.txtFL);
         fe =   (TextView) findViewById(R.id.txtFE);
         obs=   (TextView) findViewById(R.id.txtObs);
         est=   (TextView) findViewById(R.id.txtEst);
-        est.setText(paquetes.getEstado());
-        obs.setText(paquetes.getObservaciones());
-        code.setText(paquetes.getCodigo());
+        est.setText(String.valueOf(paquetes.getEstado()));
+        if (paquetes.getObservaciones()!=null)
+            obs.setText(paquetes.getObservaciones());
+        else
+            obs.setText("No existen observaciones");
+        String xx="No ha salido";
+        if (paquetes.getEstado()==1)
+            xx="Este paquete se encuentra en camino";
+        else if (paquetes.getEstado()==2)
+            xx="Este paquete ya llegado a su destino";
+        code.setText(xx);
         fe.setText(paquetes.getFechaEnt());
         fl.setText(paquetes.getFechaLleg());
 

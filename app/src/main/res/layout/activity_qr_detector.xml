@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        android:text="Me cago en la puta"
+        android:text="Ingrese el Codigo de su Paquete"
         android:textSize="25dp"
         android:id="@+id/txtViewQR"/>
 
@@ -45,8 +45,8 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/etQR"
-        android:hint="Inserta tu puto QR"
-        android:layout_marginTop="117dp"
-        android:layout_below="@+id/txtViewQR"
+        android:hint="Inserta tu codigo (QR)"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/button8"
         android:layout_alignParentStart="true" />
 </RelativeLayout>

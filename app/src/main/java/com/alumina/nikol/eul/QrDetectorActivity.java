@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.alumina.nikol.eul.Class.Paquetes;
 import com.alumina.nikol.eul.Conexion.FacadeConnect;
@@ -38,11 +39,20 @@ public class QrDetectorActivity extends AppCompatActivity implements ZXingScanne
     @Override
     public void handleResult(Result result) {
         //Aqui mostrara el resultado con rawResult.getText();
-        connectionGET(result.getText());
+        Toast.makeText(getContPadre(), "El codigo capturado es "+result.getText(),Toast.LENGTH_SHORT).show();
+        try {
+            connectionGET(result.getText());
+        }catch (Exception e){
+            Toast.makeText(getContPadre(),"Ha ocurrido un error verifique",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void ComprobarCodigo(View view) {
-        connectionGET(x.getText().toString());
+        try {
+            connectionGET(x.getText().toString());
+        }catch (Exception e){
+            Toast.makeText(getContPadre(),"Ha ocurrido un error verifique",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void BuscarCodigo(View view) {
@@ -53,7 +63,7 @@ public class QrDetectorActivity extends AppCompatActivity implements ZXingScanne
     }
     private void connectionGET(String paquete)
     {
-        String path="api/offices";//packages/"+paquete;
+        String path="api/packages/"+paquete;
         FacadeConnect.get(path,null,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
@@ -90,6 +100,10 @@ public class QrDetectorActivity extends AppCompatActivity implements ZXingScanne
                 startActivity(a);
             }
 
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Toast.makeText(getContPadre(),"No se a podido reconectar",Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

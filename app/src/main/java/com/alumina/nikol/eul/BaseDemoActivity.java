@@ -42,12 +42,30 @@ public abstract class BaseDemoActivity extends FragmentActivity implements OnMap
     protected int getLayoutId() {
         return R.layout.map;
     }
+    private void listarSucursales(JSONArray response) {
+        for (int q=0;q<response.length();q++){
+            try {
+                JSONObject jsonObject= response.getJSONObject(q);
+                MyItem er= new MyItem(jsonObject.getDouble("lat"),jsonObject.getDouble("lon"),jsonObject.getString("description"),String.valueOf(jsonObject.getInt("id")));
+                myItems.add(er);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myItems=new ArrayList<>();
         setContentView(getLayoutId());
-        myItems= (ArrayList<MyItem>)getIntent().getExtras().get("ListaSucur");
+        String myItems= (String) getIntent().getExtras().getString("ListaSucur");
+        try {
+            JSONArray s= new JSONArray(myItems);
+            listarSucursales(s);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         setUpMap();
     }
 

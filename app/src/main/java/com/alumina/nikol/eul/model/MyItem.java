@@ -21,6 +21,7 @@ import com.google.maps.android.clustering.ClusterItem;
 
 import java.io.Serializable;
 
+
 public class MyItem implements ClusterItem, Serializable {
     private final LatLng mPosition;
     private final String mTitle;
