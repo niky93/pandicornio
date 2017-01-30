@@ -19,7 +19,9 @@ package com.alumina.nikol.eul.model;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;
 
-public class MyItem implements ClusterItem {
+import java.io.Serializable;
+
+public class MyItem implements ClusterItem, Serializable {
     private final LatLng mPosition;
     private final String mTitle;
     private final String mSnippet;

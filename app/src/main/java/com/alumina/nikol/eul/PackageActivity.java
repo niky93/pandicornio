@@ -1,5 +1,6 @@
 package com.alumina.nikol.eul;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,8 @@ public class PackageActivity extends AppCompatActivity {
     }
 
     public void VolverInicio(View view) {
-
+        Intent a = new Intent(getApplicationContext(),MainActivity.class);
+        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(a);
     }
 }

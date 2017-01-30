@@ -47,6 +47,7 @@ public abstract class BaseDemoActivity extends FragmentActivity implements OnMap
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        myItems= (ArrayList<MyItem>)getIntent().getExtras().get("ListaSucur");
         setUpMap();
     }
 
